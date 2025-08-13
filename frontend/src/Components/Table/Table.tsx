@@ -34,14 +34,16 @@ const Table = (props: Props) => {
   });
   const renderedHeaders = (
     <tr>
-      {configs.map((config: any) => (
-        <th
+      {configs.map((config: any) => {
+        return (
+          <th
+          className="p-4 text-left text-xs font-medium text-fray-500 uppercase tracking-wider"
           key={config.label}
-          className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
         >
           {config.label}
         </th>
-      ))}
+        )}
+      )}
     </tr>
   );
   return <div className='bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8'>
