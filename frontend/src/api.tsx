@@ -65,7 +65,7 @@ export const getBalanceSheet = async (query: string) => {
   }
 };
 
-export const getCashflowStatement = async (query: string) => {
+export const getCashFlowStatement = async (query: string) => {
   try {
     const data = await axios.get<CompanyCashFlow[]>(
       `https://financialmodelingprep.com/api/v3/cash-flow-statement/${query}?limit=50&apikey=${process.env.REACT_APP_API_KEY}`

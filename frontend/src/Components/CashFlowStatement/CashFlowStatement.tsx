@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { CompanyCashFlow } from '../../company';
 import { useOutletContext } from 'react-router';
-import { getCashflowStatement } from '../../api';
+import { getCashFlowStatement } from '../../api';
 import Table from '../Table/Table';
+import Spinner from '../Spinner/Spinner';
 
 type Props = {};
 
@@ -48,7 +49,7 @@ const CashFlowStatement = (props: Props) => {
   const [cashFlowData, setCashFlowData] = useState<CompanyCashFlow[]>();
   useEffect(() => {
     const getRatios = async () => {
-      const result = await getCashflowStatement(ticker!);
+      const result = await getCashFlowStatement(ticker!);
       setCashFlowData(result!.data);
     };
     getRatios();
@@ -58,7 +59,7 @@ const CashFlowStatement = (props: Props) => {
       { cashFlowData ? (
         <Table config={config} data={cashFlowData}></Table>
       ) : (
-        <h1>No results</h1>
+        <Spinner />
       )}
     </>
   );
