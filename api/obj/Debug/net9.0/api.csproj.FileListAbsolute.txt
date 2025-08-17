@@ -46,6 +46,8 @@
 /Users/ram/FinShark/api/bin/Debug/net9.0/Microsoft.SqlServer.Server.dll
 /Users/ram/FinShark/api/bin/Debug/net9.0/Microsoft.Win32.SystemEvents.dll
 /Users/ram/FinShark/api/bin/Debug/net9.0/Mono.TextTemplating.dll
+/Users/ram/FinShark/api/bin/Debug/net9.0/Npgsql.dll
+/Users/ram/FinShark/api/bin/Debug/net9.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /Users/ram/FinShark/api/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/ram/FinShark/api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/ram/FinShark/api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
