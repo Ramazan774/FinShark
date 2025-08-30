@@ -169,3 +169,7 @@
 /Users/ram/FinShark/api/obj/Debug/net9.0/api.pdb
 /Users/ram/FinShark/api/obj/Debug/net9.0/api.genruntimeconfig.cache
 /Users/ram/FinShark/api/obj/Debug/net9.0/ref/api.dll
+/Users/ram/FinShark/api/bin/Debug/net9.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/ram/FinShark/api/bin/Debug/net9.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/ram/FinShark/api/bin/Debug/net9.0/Newtonsoft.Json.dll
+/Users/ram/FinShark/api/bin/Debug/net9.0/Newtonsoft.Json.Bson.dll
