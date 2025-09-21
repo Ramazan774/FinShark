@@ -376,7 +376,7 @@ namespace api.Migrations
                         .IsRequired();
 
                     b.HasOne("api.Models.Stock", "Stock")
-                        .WithMany("Comment")
+                        .WithMany("Comments")
                         .HasForeignKey("StockId");
 
                     b.Navigation("AppUser");
@@ -410,7 +410,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Stock", b =>
                 {
-                    b.Navigation("Comment");
+                    b.Navigation("Comments");
 
                     b.Navigation("Portfolios");
                 });

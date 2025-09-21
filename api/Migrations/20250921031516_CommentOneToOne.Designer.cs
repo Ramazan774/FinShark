@@ -12,7 +12,7 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20250921025234_CommentOneToOne")]
+    [Migration("20250921031516_CommentOneToOne")]
     partial class CommentOneToOne
     {
         /// <inheritdoc />
@@ -379,7 +379,7 @@ namespace api.Migrations
                         .IsRequired();
 
                     b.HasOne("api.Models.Stock", "Stock")
-                        .WithMany("Comment")
+                        .WithMany("Comments")
                         .HasForeignKey("StockId");
 
                     b.Navigation("AppUser");
@@ -413,7 +413,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Stock", b =>
                 {
-                    b.Navigation("Comment");
+                    b.Navigation("Comments");
 
                     b.Navigation("Portfolios");
                 });
