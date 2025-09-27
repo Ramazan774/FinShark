@@ -21,4 +21,4 @@ const Spinner = ({ isLoading = true }: Props) => {
   );
 };
 
-export default Spinner
+export default Spinner;

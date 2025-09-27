@@ -7,7 +7,7 @@ type Props = {
 }
 
 const TenKFinderItem = ({ tenK }: Props) => {
-  const fillingDate = new Date(tenK.fillingDate).getFullYear();
+  const fillingDate = new Date(tenK.filingDate).getFullYear();
   return <Link
             reloadDocument
             to={tenK.finalLink}
@@ -19,4 +19,4 @@ const TenKFinderItem = ({ tenK }: Props) => {
   
 }
 
-export default TenKFinderItem
+export default TenKFinderItem;

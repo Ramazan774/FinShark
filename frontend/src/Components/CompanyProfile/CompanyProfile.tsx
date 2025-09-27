@@ -51,7 +51,7 @@ const tableConfig = [
       "Book value per share indicates a firm's net asset value (total assets - total liabilities) on per share basis",
   },
   {
-    label: "Divdend Yield TTM",
+    label: "Dividend Yield TTM",
     render: (company: CompanyKeyMetrics) =>
       formatRatio(company.dividendYieldTTM),
     subTitle: "Shows how much a company pays each year relative to stock price",
@@ -78,8 +78,6 @@ const tableConfig = [
   },
 ];
 
-
-
 const CompanyProfile = (props: Props) => {
   const ticker = useOutletContext<string>();
   const [companyData, setCompanyData] = useState<CompanyKeyMetrics>();
@@ -104,4 +102,4 @@ const CompanyProfile = (props: Props) => {
   );
 }
 
-export default CompanyProfile
+export default CompanyProfile;

@@ -37,4 +37,4 @@ const Table = ({ config, data }: Props) => {
   );
 };
 
-export default Table
+export default Table;

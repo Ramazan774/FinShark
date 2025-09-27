@@ -37,7 +37,7 @@ const Navbar = (props: Props) => {
               to="/register"
               className="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
             >
-              Signup
+              Sign up
             </Link>
           </div>
         )}
@@ -46,4 +46,4 @@ const Navbar = (props: Props) => {
   );
 };
 
-export default Navbar
+export default Navbar;

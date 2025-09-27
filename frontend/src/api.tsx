@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CompanyBalanceSheet, CompanyCashFlow, CompanyCompData, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyTenK } from "./company";
+import { CompanyBalanceSheet, CompanyCashFlow, CompanyCompData, CompanyHistoricalDividend, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyTenK } from "./company";
 
 interface SearchResponse {
   data: CompanySearch[];
@@ -35,8 +35,7 @@ export const getCompanyProfile = async (query: string) => {
 export const getKeyMetrics = async (query: string) => {
   try {
     const data = await axios.get<CompanyKeyMetrics[]>(
-      
-      `https://financialmodelingprep.com/stable/key-metrics-ttm?symbol=${query}?limit=40&apikey=${process.env.REACT_APP_API_KEY}`
+      `https://financialmodelingprep.com/stable/key-metrics-ttm?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
     )
     return data;
   } catch(error: any) {
@@ -91,6 +90,17 @@ export const getCompData = async (query: string) => {
 export const getTenK = async (query: string) => {
   try {
     const data = await axios.get<CompanyTenK[]>(
+      `https://financialmodelingprep.com/stable/sec-filings-search/symbol?symbol=${query}&from=2025-01-01&to=2025-03-01&page=0&limit=10&apikey=${process.env.REACT_APP_API_KEY}`
+    )
+    return data;
+  } catch(error: any) {
+    console.log("error message from API: ", error.message);
+  }
+};
+
+export const getHistoricalDivident = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyHistoricalDividend[]>(
       `https://financialmodelingprep.com/stable/sec_filings-company-search/symbol?symbol=${query}?type=10-k&page=0&apikey=${process.env.REACT_APP_API_KEY}`
     )
     return data;
