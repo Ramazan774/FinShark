@@ -8,7 +8,7 @@ const HomePage = (props: Props) => {
     <div>
       <Hero />
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

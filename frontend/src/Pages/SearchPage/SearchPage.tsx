@@ -1,7 +1,6 @@
 import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react'
 import { CompanySearch } from '../../company';
 import { searchCompanies } from '../../api';
-import Navbar from '../../Components/Navbar/Navbar';
 import Search from '../../Components/Search/Search';
 import ListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio';
 import CardList from '../../Components/CardList/CardList';
@@ -34,8 +33,8 @@ const SearchPage = (props: Props) => {
       }
     }).catch((e) => {
       toast.warning("Could not get portfolio values!");
-    })
-  }
+    });
+  };
 
   const onPortfolioCreate = (e: any) => {
     e.preventDefault();
@@ -54,12 +53,12 @@ const SearchPage = (props: Props) => {
     e.preventDefault();
     portfolioDeleteAPI(e.target[0].value)
     .then((res) => {
-      if(res?.status == 200) {
+      if(res?.status === 200) {
         toast.success("Stock deleted from portfolio.");
         getPortfolio();
-      }
-    })
-  }
+      };
+    });
+  };
 
   const onSearchSubmit = async (e : SyntheticEvent) => {
     e.preventDefault();
@@ -88,7 +87,7 @@ const SearchPage = (props: Props) => {
       />
       {serverError && <div>Unable to connect to API</div>}
     </>
-  )
-}
+  );
+};
 
-export default SearchPage
+export default SearchPage;

@@ -12,7 +12,7 @@ const tableConfig = [
     label: "symbol",
     render: (company: any) => company.symbol,
   }
-]
+];
 
 const DesignPage = (props: Props) => {
   return (
@@ -22,7 +22,7 @@ const DesignPage = (props: Props) => {
       <RatioList config={tableConfig} data={data} />
       <Table config={tableConfig} data={data} />
     </>
-  )
-}
+  );
+};
 
-export default DesignPage
+export default DesignPage;
