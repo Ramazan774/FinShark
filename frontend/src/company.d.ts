@@ -11,7 +11,7 @@ export interface CompanyProfile {
   price: number;
   beta: number;
   volAvg: number;
-  mktCap: number;
+  marketCap: number;
   lastDiv: number;
   range: string;
   changes: number;
@@ -111,6 +111,7 @@ export interface CompanyIncomeStatement {
   reportedCurrency: string;
   cik: string;
   fillingDate: string;
+  fiscalYear: string,
   acceptedDate: string;
   calendarYear: string;
   period: string;
@@ -137,9 +138,9 @@ export interface CompanyIncomeStatement {
   incomeBeforeTaxRatio: number;
   incomeTaxExpense: number;
   netIncome: number;
-  netIncomeRatio: number;
+  netIncomeDeductions: number;
   eps: number;
-  epsdiluted: number;
+  epsDiluted: number;
   weightedAverageShsOut: number;
   weightedAverageShsOutDil: number;
   link: string;
@@ -343,13 +344,13 @@ export interface CompanyKeyMetrics {
   revenuePerShareTTM: number;
   netIncomePerShareTTM: number;
   operatingCashFlowPerShareTTM: number;
-  freeCashFlowPerShareTTM: number;
+  freeCashFlowToEquityTTM: number;
   cashPerShareTTM: number;
-  bookValuePerShareTTM: number;
+  enterpriseValueTTM: number;
   tangibleBookValuePerShareTTM: number;
   shareholdersEquityPerShareTTM: number;
   interestDebtPerShareTTM: number;
-  marketCapTTM: number;
+  marketCap: number;
   enterpriseValueTTM: number;
   peRatioTTM: number;
   priceToSalesRatioTTM: number;
@@ -369,7 +370,7 @@ export interface CompanyKeyMetrics {
   currentRatioTTM: number;
   interestCoverageTTM: number;
   incomeQualityTTM: number;
-  dividendYieldTTM: number;
+  workingCapitalTTM: number;
   dividendYieldPercentageTTM: number;
   payoutRatioTTM: number;
   salesGeneralAndAdministrativeToRevenueTTM: number;
@@ -396,7 +397,7 @@ export interface CompanyKeyMetrics {
   receivablesTurnoverTTM: number;
   payablesTurnoverTTM: number;
   inventoryTurnoverTTM: number;
-  roeTTM: number;
+  returnOnEquityTTM: number;
   capexPerShareTTM: number;
   dividendPerShareTTM: number;
   debtToMarketCapTTM: number;

@@ -93,7 +93,7 @@ const BalanceSheet = (props: Props) => {
         <RatioList config={config} data={companyData} />
       ) : (
         <Spinner />
-      )};
+      )}
     </>
   )
 }
