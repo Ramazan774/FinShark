@@ -19,6 +19,7 @@ namespace api.Controllers
     {
         private readonly ApplicationDBContext _context;
         private readonly IStockRepository _stockRepo;
+        private readonly IFMPService _fmpService;
 
         public StockController(ApplicationDBContext context, IStockRepository stockRepo)
         {
@@ -65,7 +66,7 @@ namespace api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            
+
             var stockModel = stockDto.ToStockFromCreateDTO();
             await _stockRepo.CreateAsync(stockModel);
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
@@ -105,8 +106,98 @@ namespace api.Controllers
             {
                 return NotFound();
             }
-            
+
             return NoContent();
         }
-    }
-}
+        
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string query)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.SearchCompaniesAsync(query);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+
+        [HttpGet("profile/{symbol}")]
+        public async Task<IActionResult> GetProfile([FromRoute] string symbol)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.GetCompanyProfileAsync(symbol);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+
+        [HttpGet("key-metrics/{symbol}")]
+        public async Task<IActionResult> GetKeyMetrics([FromRoute] string symbol)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.GetKeyMetricsAsync(symbol);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+
+        [HttpGet("income-statement/{symbol}")]
+        public async Task<IActionResult> GetIncomeStatement([FromRoute] string symbol)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.GetIncomeStatementAsync(symbol);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+
+        [HttpGet("balance-sheet/{symbol}")]
+        public async Task<IActionResult> GetBalanceSheet([FromRoute] string symbol)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.GetBalanceSheetAsync(symbol);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+
+        [HttpGet("cash-flow/{symbol}")]
+        public async Task<IActionResult> GetCashFlow([FromRoute] string symbol)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.GetCashFlowStatementAsync(symbol);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+
+        [HttpGet("peers/{symbol}")]
+        public async Task<IActionResult> GetPeers([FromRoute] string symbol)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.GetCompanyPeersAsync(symbol);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+
+        [HttpGet("ten-k/{symbol}")]
+        public async Task<IActionResult> GetTenK([FromRoute] string symbol)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.GetTenKAsync(symbol);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+
+        [HttpGet("historical-dividend/{symbol}")]
+        public async Task<IActionResult> GetHistoricalDividend([FromRoute] string symbol)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _fmpService.GetHistoricalDividendAsync(symbol);
+            return result != null ? Content(result, "application/json") : NotFound();
+        }
+    };
+};
