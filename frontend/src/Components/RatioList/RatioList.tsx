@@ -32,4 +32,4 @@ const RatioList = ({ config, data }: Props) => {
   )
 }
 
-export default RatioList
+export default RatioList;

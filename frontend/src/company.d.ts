@@ -310,9 +310,10 @@ export interface CompanyKeyMetrics {
   debtToMarketCapTTM: number;
 }
 
-export interface CompanyHistoricalDividend {
+export interface CompanyHistoricalMarketCap {
   symbol: string;
-  historical: Dividend[];
+  date: string;
+  marketCap: number;
 }
 
 export interface Dividend {
@@ -335,7 +336,7 @@ export interface CompanyTenK {
   filingDate: string;
   acceptedDate: string;
   cik: string;
-  type: string;
+  formType: string;
   link: string;
   finalLink: string;
 }
