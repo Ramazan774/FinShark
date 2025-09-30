@@ -54,5 +54,5 @@ namespace api.Data
             };
             builder.Entity<IdentityRole>().HasData(roles);
         }   
-    }
-}
+    };
+};

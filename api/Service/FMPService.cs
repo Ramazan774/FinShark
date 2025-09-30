@@ -48,45 +48,45 @@ namespace api.Service
 
         public async Task<string> SearchCompaniesAsync(string query)
         {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/search?query={query}&apikey={_apiKey}");
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/search-symbol?query={query}&apikey={_apiKey}");
         }
 
-        public async Task<string> GetCompanyProfileAsync(string symbol)
+        public async Task<string> GetCompanyProfileAsync(string query)
         {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/profile/{symbol}?apikey={_apiKey}");
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/profile?symbol={query}&apikey={_apiKey}");
         }
 
-        public async Task<string> GetKeyMetricsAsync(string symbol)
+        public async Task<string> GetKeyMetricsAsync(string query)
         {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/key-metrics-ttm/{symbol}?apikey={_apiKey}");
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/key-metrics-ttm?symbol={query}&apikey={_apiKey}");
         }
-        public async Task<string> GetIncomeStatementAsync(string symbol)
+        public async Task<string> GetIncomeStatementAsync(string query)
         {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/income-statement/{symbol}?apikey={_apiKey}");
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/income-statement?symbol={query}&apikey={_apiKey}");
         }
-        public async Task<string> GetBalanceSheetAsync(string symbol)
+        public async Task<string> GetBalanceSheetAsync(string query)
         {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/balance-sheet-statement/{symbol}?apikey={_apiKey}");
-        }
-
-        public async Task<string> GetCashFlowStatementAsync(string symbol)
-        {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/cash-flow-statement/{symbol}?apikey={_apiKey}");
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/balance-sheet-statement?symbol={query}&apikey={_apiKey}");
         }
 
-        public async Task<string> GetCompanyPeersAsync(string symbol)
+        public async Task<string> GetCashFlowStatementAsync(string query)
         {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/stock_peers?symbol={symbol}&apikey={_apiKey}");
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/cash-flow-statement?symbol={query}&apikey={_apiKey}");
         }
 
-        public async Task<string> GetTenKAsync(string symbol)
+        public async Task<string> GetCompanyPeersAsync(string query)
         {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/sec_filings/{symbol}?type=10-K&page=0&apikey={_apiKey}");
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/stock-peers?symbol={query}&limit=1&apikey={_apiKey}");
         }
 
-        public async Task<string> GetHistoricalDividendAsync(string symbol)
+        public async Task<string> GetTenKAsync(string query)
         {
-            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/historical-price-full/stock_dividend/{symbol}?apikey={_apiKey}");
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/sec-filings-search/symbol?symbol={query}&from=2024-12-01&to=2025-08-31&page=0&limit=1&apikey={_apiKey}");
+        }
+
+        public async Task<string> GetHistoricalMarketCapAsync(string query)
+        {
+            return await GetFMPDataAsync($"https://financialmodelingprep.com/stable/historical-market-capitalization?symbol={query}&apikey={_apiKey}");
         }
         private async Task<string> GetFMPDataAsync(string url)
         {

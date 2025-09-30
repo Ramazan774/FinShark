@@ -95,5 +95,5 @@ namespace api.Controllers
                 return StatusCode(500, e);
             }
         }
-    }
-}
+    };
+};

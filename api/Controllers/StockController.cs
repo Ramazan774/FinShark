@@ -7,9 +7,9 @@ using api.Dtos.Stock;
 using api.Helpers;
 using api.Interfaces;
 using api.Mappers;
+using api.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -21,10 +21,11 @@ namespace api.Controllers
         private readonly IStockRepository _stockRepo;
         private readonly IFMPService _fmpService;
 
-        public StockController(ApplicationDBContext context, IStockRepository stockRepo)
+        public StockController(ApplicationDBContext context, IStockRepository stockRepo, IFMPService fmpService)
         {
             _stockRepo = stockRepo;
             _context = context;
+            _fmpService = fmpService;
         }
 
         [HttpGet]
@@ -150,7 +151,7 @@ namespace api.Controllers
             return result != null ? Content(result, "application/json") : NotFound();
         }
 
-        [HttpGet("balance-sheet/{symbol}")]
+        [HttpGet("balance-sheet-statement/{symbol}")]
         public async Task<IActionResult> GetBalanceSheet([FromRoute] string symbol)
         {
             if (!ModelState.IsValid)
@@ -160,7 +161,7 @@ namespace api.Controllers
             return result != null ? Content(result, "application/json") : NotFound();
         }
 
-        [HttpGet("cash-flow/{symbol}")]
+        [HttpGet("cash-flow-statement/{symbol}")]
         public async Task<IActionResult> GetCashFlow([FromRoute] string symbol)
         {
             if (!ModelState.IsValid)
@@ -170,7 +171,7 @@ namespace api.Controllers
             return result != null ? Content(result, "application/json") : NotFound();
         }
 
-        [HttpGet("peers/{symbol}")]
+        [HttpGet("stock-peers/{symbol}")]
         public async Task<IActionResult> GetPeers([FromRoute] string symbol)
         {
             if (!ModelState.IsValid)
@@ -190,13 +191,13 @@ namespace api.Controllers
             return result != null ? Content(result, "application/json") : NotFound();
         }
 
-        [HttpGet("historical-dividend/{symbol}")]
+        [HttpGet("historical-market-capitalization/{symbol}")]
         public async Task<IActionResult> GetHistoricalDividend([FromRoute] string symbol)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _fmpService.GetHistoricalDividendAsync(symbol);
+            var result = await _fmpService.GetHistoricalMarketCapAsync(symbol);
             return result != null ? Content(result, "application/json") : NotFound();
         }
     };

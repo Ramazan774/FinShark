@@ -45,5 +45,5 @@ namespace api.Service
 
             return tokenHandler.WriteToken(token);
         }
-  }
-}
+  };
+};
