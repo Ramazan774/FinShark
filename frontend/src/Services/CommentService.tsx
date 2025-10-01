@@ -2,7 +2,7 @@ import axios from "axios";
 import { CommentGet, CommentPost } from "../Models/Comment";
 import { handleError } from "../Helpers/ErrorHandler";
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5278/";
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5278";
 // const api = "http://localhost:5278/api/comment/";
 
 export const commentPostAPI = async (
