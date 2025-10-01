@@ -61,7 +61,7 @@ const CashFlowStatement = (props: Props) => {
       setCashFlowData(result!.data);
     };
     getRatios();
-  }, []);
+  }, [ticker]);
   return (
     <>
       { cashFlowData ? (

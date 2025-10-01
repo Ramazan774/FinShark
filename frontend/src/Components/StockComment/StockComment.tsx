@@ -21,7 +21,7 @@ const StockComment = ({ stockSymbol } : Props) => {
 
   useEffect(() => {
     getComments();
-  }, []);
+  });
 
   const handleComment = (e: CommentFormInputs) => {
     commentPostAPI(e.title, e.content, stockSymbol)

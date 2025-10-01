@@ -86,7 +86,7 @@ const BalanceSheet = (props: Props) => {
       setCompanyData(value?.data[0]);
     };
     getCompanyData();
-  }, []);
+  }, [ticker]);
   return (
     <>
       {companyData ? (
