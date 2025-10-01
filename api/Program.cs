@@ -113,13 +113,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 };
 
-var allowedOrigins = builder.Configuration.GetValue<string>("AllowedOrigins")?.Split(',')
+var allowedOrigins = builder.Configuration.GetValue<string>("AllowedOrigins")?.Split(',',  StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
     ?? new[] { "http://localhost:3000" };
 app.UseCors(x => x
-    .AllowAnyMethod()
+    .WithOrigins(allowedOrigins)
     .AllowAnyHeader()
-    .AllowCredentials()
-    .WithOrigins(allowedOrigins));
+    .AllowAnyMethod()
+    .AllowCredentials());
     // .SetIsOriginAllowed(origin => true));
 
 app.UseAuthentication();
