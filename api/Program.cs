@@ -113,14 +113,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 };
 
+var allowedOrigins = builder.Configuration.GetValue<string>("AllowedOrigins")?.Split(',')
+    ?? new[] { "http://localhost:3000" };
 app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader()
     .AllowCredentials()
-    .WithOrigins(
-        "http://localhost:5278",
-        "http://localhost:3000"
-    ));
+    .WithOrigins(allowedOrigins));
     // .SetIsOriginAllowed(origin => true));
 
 app.UseAuthentication();
@@ -128,5 +127,19 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
+    try
+    {
+        db.Database.Migrate();
+        Console.WriteLine("Database migrations applied successfully");
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Error applying migrations: {e.Message}");
+    }
+}
 
 app.Run();
