@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { CommentGet } from '../../Models/Comment';
 
 type Props = {
@@ -6,6 +6,16 @@ type Props = {
 };
 
 const StockCommentListItem = ({ comment }: Props) => {
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  };
+
   return (
     <div className="relative grid grid-cols-1 gap-4 ml-4 p-4 mb-8 w-full border rounded-lg bg-white shadow-lg">
       <div className="relative flex gap-4">
@@ -16,6 +26,7 @@ const StockCommentListItem = ({ comment }: Props) => {
             </p>
           </div>
           <p className="text-dark text-sm">@{comment.createdBy}</p>
+          <p className="text-gray-500 text-xs">Posted at {formatDate(comment.createdAt)}</p>
         </div>
       </div>
       <p className="-mt-4 text-gray-500">{comment.content}</p>
@@ -23,4 +34,4 @@ const StockCommentListItem = ({ comment }: Props) => {
   )
 }
 
-export default StockCommentListItem
+export default StockCommentListItem;
