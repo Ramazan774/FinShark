@@ -113,14 +113,26 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 };
 
-var allowedOrigins = builder.Configuration.GetValue<string>("AllowedOrigins")?.Split(',',  StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-    ?? new[] { "http://localhost:3000" };
-app.UseCors(x => x
-    .WithOrigins(allowedOrigins)
-    .AllowAnyHeader()
-    .AllowAnyMethod()
-    .AllowCredentials());
-    // .SetIsOriginAllowed(origin => true));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins", policy =>
+    {
+        policy.WithOrigins("https://finsharkproject.netlify.app", "http://localhost:3000")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+    });
+});
+
+app.UseCors("AllowSpecificOrigins");
+// var allowedOrigins = builder.Configuration.GetValue<string>("AllowedOrigins")?.Split(',',  StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+//     ?? new[] { "http://localhost:3000" };
+// app.UseCors(x => x
+//     .WithOrigins(allowedOrigins)
+//     .AllowAnyHeader()
+//     .AllowAnyMethod()
+//     .AllowCredentials());
+// .SetIsOriginAllowed(origin => true));
 
 app.UseAuthentication();
 
