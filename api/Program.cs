@@ -123,7 +123,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 };
 
-app.UseCors("AllowSpecificOrigins");
+app.UseCors("AllowNetlifyAndLocalhost");
 
 // var allowedOrigins = builder.Configuration.GetValue<string>("AllowedOrigins")?.Split(',',  StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 //     ?? new[] { "http://localhost:3000" };
