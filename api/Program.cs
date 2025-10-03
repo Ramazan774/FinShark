@@ -52,8 +52,23 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+    if (string.IsNullOrEmpty(connString))
+    {
+        var rawUrl = builder.Configuration["DATABASE_URL"];
+        connString = ConvertDatabaseUrlToConnectionString(rawUrl);
+    }
+
+    options.UseNpgsql(connString);
 });
+
+string ConvertDatabaseUrlToConnectionString(string rawUrl)
+{
+    var uri = new Uri(rawUrl);
+    var userInfo = uri.UserInfo.Split(':');
+    return $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
+}
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
