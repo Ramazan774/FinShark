@@ -92,9 +92,9 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigins", policy =>
+    options.AddPolicy("AllowNetlifyAndLocalhost", policy =>
     {
-        policy.WithOrigins("https://finsharkproject.netlify.app", "http://localhost:3000")
+        policy.WithOrigins("https://finsharkproject.netlify.app","http://localhost:3000")
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials();
