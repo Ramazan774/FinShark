@@ -43,13 +43,13 @@ export const UserProvider = ({ children} : Props) => {
   ) => {
     await registerAPI(email, username, password).then((res) => {
       if(res) {
-        localStorage.setItem("token", res?.data.token);
+        localStorage.setItem("token", res.token);
         const userObj = {
-          userName: res?.data.userName,
-          email: res?.data.email
+          userName: res.userName,
+          email: res.email
         }
         localStorage.setItem("user", JSON.stringify(userObj));
-        setToken(res?.data.token!);
+        setToken(res.token!);
         setUser(userObj!);
         toast.success("Login Success!");
         navigate("/search");
@@ -63,13 +63,13 @@ export const UserProvider = ({ children} : Props) => {
   ) => {
     await loginAPI(username, password).then((res) => {
       if(res) {
-        localStorage.setItem("token", res?.data.token);
+        localStorage.setItem("token", res.token);
         const userObj = {
-          userName: res?.data.userName,
-          email: res?.data.email
+          userName: res.userName,
+          email: res.email
         }
         localStorage.setItem("user", JSON.stringify(userObj));
-        setToken(res?.data.token!);
+        setToken(res.token!);
         setUser(userObj!);
         toast.success("Login Success!");
         navigate("/search");
