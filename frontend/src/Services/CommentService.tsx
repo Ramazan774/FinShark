@@ -11,7 +11,7 @@ export const commentPostAPI = async (
   symbol: string
 ) => {
   try {
-    const data = await axios.post<CommentPost>(`${API_BASE_URL}/api/comment/{symbol}`, {
+    const data = await axios.post<CommentPost>(`${API_BASE_URL}/api/comment/${symbol}`, {
       title: title,
       content: content
     })
@@ -25,7 +25,7 @@ export const commentGetAPI = async (
   symbol: string
 ) => {
   try {
-    const data = await axios.get<CommentGet[]>(`${API_BASE_URL}/api/comment/{symbol}`)
+    const data = await axios.get<CommentGet[]>(`${API_BASE_URL}/api/comment?symbol=${symbol}`)
     return data;
   } catch (error) {
     handleError(error);
