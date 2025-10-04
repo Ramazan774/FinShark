@@ -4,10 +4,6 @@ import { UserProfileToken } from "../Models/User";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5278";
 
-const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-});
-
 export const loginAPI = async (username: string, password: string) => {
   try {
     const { data } = await axios.post<UserProfileToken>(`${API_BASE_URL}/api/account/login`, {
