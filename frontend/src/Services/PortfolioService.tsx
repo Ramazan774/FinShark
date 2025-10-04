@@ -8,8 +8,8 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5278";
 
 export const portfolioAddAPI = async (symbol: string) => {
   try {
-    const { data } = await apiClient.post<PortfolioPost>(`/api/portfolio/${symbol}`);
-    return data;
+    const res = await apiClient.post<PortfolioPost>(`/api/portfolio/${symbol}`);
+    return res;
   } catch (error) {
     handleError(error);
   }
@@ -17,8 +17,8 @@ export const portfolioAddAPI = async (symbol: string) => {
 
 export const portfolioDeleteAPI = async (symbol: string) => {
   try {
-    const { data } = await apiClient.delete<PortfolioPost>(`/api/portfolio/${symbol}`);
-    return data;
+    const res = await apiClient.delete<PortfolioPost>(`/api/portfolio/${symbol}`);
+    return res;
   } catch (error) {
     handleError(error);
   }
@@ -26,9 +26,9 @@ export const portfolioDeleteAPI = async (symbol: string) => {
 
 export const portfolioGetAPI = async () => {
   try {
-    const { data } = await apiClient.get<PortfolioGet[]>("/api/portfolio");
+    const res = await apiClient.get<PortfolioGet[]>("/api/portfolio");
     // const data = await axios.get<PortfolioGet[]>(`${API_BASE_URL}/api/portfolio`);
-    return data;
+    return res;
   } catch (error) {
     handleError(error);
   }
