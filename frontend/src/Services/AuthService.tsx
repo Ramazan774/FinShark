@@ -4,12 +4,21 @@ import { UserProfileToken } from "../Models/User";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5278";
 
+const apiClient = axios.create({
+  baseURL: API_BASE_URL,
+});
+
 export const loginAPI = async (username: string, password: string) => {
   try {
-    const data = await axios.post<UserProfileToken>(`${API_BASE_URL}/api/account/login`, {
+    const { data } = await axios.post<UserProfileToken>(`${API_BASE_URL}/api/account/login`, {
       username: username,
       password: password
     });
+    if (data && data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data));
+    }
+
     return data;
   } catch (error) {
     handleError(error);
@@ -18,11 +27,16 @@ export const loginAPI = async (username: string, password: string) => {
 
 export const registerAPI = async (email: string, username: string, password: string) => {
   try {
-    const data = await axios.post<UserProfileToken>(`${API_BASE_URL}/api/account/register`, {
+    const { data } = await axios.post<UserProfileToken>(`${API_BASE_URL}/api/account/register`, {
       email: email,
       username: username,
       password: password
     });
+    if (data && data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data));
+    }
+
     return data;
   } catch (error) {
     handleError(error);
