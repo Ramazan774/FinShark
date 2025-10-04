@@ -25,7 +25,7 @@ export const commentGetAPI = async (
   symbol: string
 ) => {
   try {
-    const data = await axios.get<CommentGet[]>(`${API_BASE_URL}/api/comment?Symbol=${symbol}`)
+    const data = await axios.get<CommentGet[]>(`${API_BASE_URL}/api/comment/{symbol}`)
     return data;
   } catch (error) {
     handleError(error);
