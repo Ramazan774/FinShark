@@ -32,6 +32,8 @@ const Navbar = (props: Props) => {
           </div>
         ) : (
           <div className="hidden lg:flex items-center space-x-6 text-back">
+            <p>Username: demouser</p>
+            <p>Password: Demouser@123</p>
             <Link to="/login" className="hover:text-darkBlue">Login</Link>
             <Link
               to="/register"
