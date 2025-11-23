@@ -14,4 +14,4 @@
 # IDE
 .vscode/
 .vs/
-*.swp
+*.swpappsettings.Development.json
