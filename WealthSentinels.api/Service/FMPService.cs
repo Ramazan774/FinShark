@@ -11,14 +11,23 @@ namespace api.Service
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _config;
         private readonly string _apiKey;
-        public FMPService(HttpClient httpClient, IConfiguration config)
+        private readonly IMemoryCache _cache;
+        public FMPService(HttpClient httpClient, IConfiguration config, IMemoryCache cache)
         {
             _httpClient = httpClient;
             _config = config;
+            _cache = cache;
             _apiKey = _config["FMPKey"];
         }
         public async Task<Stock> FindStockBySymbolAsync(string symbol)
         {
+            string cacheKey = $"StockData_{symbol.ToUpper()}";
+
+            if (_cache.TryGetValue(cacheKey, out Stock cachedStock))
+            {
+                return cachedStock;          
+            }
+            
             try
             {
                 var result = await _httpClient.GetAsync($"https://financialmodelingprep.com/stable/profile?symbol={symbol}&apikey={_apiKey}");
@@ -29,7 +38,14 @@ namespace api.Service
                     var stock = tasks?[0];
                     if (stock != null)
                     {
-                        return stock.ToStockFromFMP();
+                        var mappedStock = stock.ToStockFromFMP();
+
+                        var cacheOptions = new MemoryCacheEntryOptions()
+                            .SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
+                        
+                        _cache.Set(cacheKey, mappedStock, cacheOptions);
+
+                        return mappedStock;
                     }
                     return null;
                 }
