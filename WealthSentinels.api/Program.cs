@@ -109,7 +109,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowNetlifyAndLocalhost", policy =>
     {
-        policy.WithOrigins("https://wealthsentinelsproject.netlify.app","http://localhost:3000")
+        policy.WithOrigins("https://wealthsentinels.netlify.app","http://localhost:3000")
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials();
